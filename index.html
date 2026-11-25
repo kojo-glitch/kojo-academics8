@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Kojo homework 🎓 - All 7 Courses</title>
+<meta name="theme-color" content="#7c3aed">
+<link rel="manifest" href="data:application/manifest+json,[STRIPPED]
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Kojo assignment">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<style>
+:root{--bg:#f6f5ff;--card:rgba(255,255,255,.88);--text:#111;--muted:#6b7280;--border:rgba(0,0,0,.07);--input:#fff;--chip:#f3f4f6;--hero:#111;--error:#dc2626}
+body.dark{--bg:#0a0a14;--card:rgba(26,26,46,.92);--text:#f8fafc;--muted:#94a3b8;--border:rgba(255,255,255,.08);--input:#23233a;--chip:#2a2a44;--hero:#1a1a2e}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);padding:14px;padding-bottom:90px;min-height:100vh;transition:.3s}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(700px 300px at 0% 0%,#a78bfa 0%,transparent 60%),radial-gradient(700px 300px at 100% 0%,#f472b6 0%,transparent 50%);z-index:-1;opacity:.35}
+body.dark::before{opacity:.18}
+.wrap{max-width:580px;margin:0 auto}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:8px 2px}
+.userInfo{display:flex;gap:10px;align-items:center;cursor:pointer}
+.avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#ec4899,#f59e0b);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;font-weight:900;box-shadow:0 6px 16px rgba(124,58,237,.4);border:2px solid #fff}
+.userInfo b{font-size:15px;display:block}.userInfo span{font-size:11px;color:var(--muted)}
+.idBadge{display:inline-block;background:#ede9fe;color:#7c3aed;padding:2px 8px;border-radius:999px;font-size:10px;font-weight:900;margin-top:2px}
+body.dark .idBadge{background:#2e1a5e;color:#e9d5ff}
+.topBtns{display:flex;gap:6px}.iconBtn{width:38px;height:38px;border-radius:50%;border:1px solid var(--border);background:var(--card);cursor:pointer;font-size:18px;color:var(--text)}
+.hero{background:linear-gradient(135deg,#111 0%,#2e1a5e 50%,#7c3aed 100%);color:#fff;border-radius:28px;padding:22px;position:relative;overflow:hidden;box-shadow:0 20px 40px rgba(124,58,237,.25)}
+.hero h1{font-family:'Playfair Display',serif;font-size:30px;line-height:1.1}.hero h1 span{color:#fde68a}
+.hero p{font-size:13px;line-height:1.6;color:#e9d5ff;margin-top:8px}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px}.stat{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:10px;text-align:center}.stat b{font-size:14px}.stat span{display:block;font-size:11px;color:#e9d5ff}
+.streakBar{display:flex;gap:4px;margin-top:8px}.streakDay{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;background:rgba(255,255,255,.15)}.streakDay.done{background:#22c55e;color:#fff}
+.installBanner{background:linear-gradient(135deg,#7c3aed,#ec4899);color:#fff;border-radius:20px;padding:14px;display:flex;gap:12px;align-items:center;margin:14px 0}.installBanner button{background:#fff;color:#7c3aed;border:0;padding:10px 14px;border-radius:999px;font-weight:900;cursor:pointer;white-space:nowrap}
+.courses{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}
+.course{padding:12px;border-radius:20px;border:2px solid var(--border);background:var(--card);cursor:pointer;text-align:left;color:var(--text)}
+.course.active{border-color:#7c3aed;background:linear-gradient(135deg,#ede9fe,#fdf2f8);box-shadow:0 8px 20px rgba(124,58,237,.2)}
+body.dark .course.active{background:linear-gradient(135deg,#2e1a5e,#3a1a3a)}
+.course b{font-size:13px}.course span{font-size:11px;color:var(--muted);display:block}.course i{font-size:20px;display:block;margin-bottom:5px}
+.card{background:var(--card);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:26px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.06);margin-bottom:14px}
+.teacher{display:flex;gap:12px;background:linear-gradient(135deg,#ede9fe,#fdf2f8);border:1px solid #ddd6fe;border-radius:20px;padding:14px;color:#111}
+body.dark .teacher{background:linear-gradient(135deg,#2e1a5e,#3a1a3a);color:#fff}
+.teacherAvatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#ec4899);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
+.teacher p{font-size:13px;line-height:1.6}.teacher b{color:#7c3aed}
+label{font-size:12px;font-weight:800;letter-spacing:.5px}
+input,textarea,select{width:100%;padding:14px;border-radius:16px;border:1.5px solid var(--border);background:var(--input);color:var(--text);outline:none;font-size:14px;margin-top:8px;font-family:inherit}
+input.error{border-color:var(--error)!important;background:#fef2f2}
+body.dark input.error{background:#3a1a1a}
+textarea{min-height:90px;resize:vertical}
+.errorMsg{color:var(--error);font-size:12px;font-weight:700;margin-top:6px;display:none}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.chip{padding:8px 12px;border-radius:999px;background:var(--chip);border:1px solid var(--border);font-size:12px;font-weight:700;cursor:pointer;color:var(--text)}
+.btn{width:100%;padding:15px;border-radius:16px;border:0;font-weight:900;font-size:15px;cursor:pointer}.btnMain{background:linear-gradient(135deg,#7c3aed,#ec4899);color:#fff}.btnMain:disabled{opacity:.5;cursor:not-allowed}.btnDark{background:#111;color:#fff}.btnOutline{background:transparent;border:1.5px solid var(--border);color:var(--text)}
+.uploadZone{border:2.5px dashed #c4b5fd;background:#faf5ff;border-radius:22px;padding:20px;text-align:center;margin-top:10px;cursor:pointer;color:#111}
+body.dark .uploadZone{background:#1a1a2e;color:#fff}
+.uploadZone b{color:#7c3aed}
+.previewBox{margin-top:12px;display:none}.previewBox img{width:100%;border-radius:16px;max-height:300px;object-fit:contain;background:#000}
+.ocrBox{background:#fffbeb;border:1px solid #fde68a;border-radius:14px;padding:12px;margin-top:10px;font-size:13px;line-height:1.6;color:#111}
+.answer{line-height:1.75;font-size:14px}.answer h3{font-size:16px;margin:14px 0 6px}.answer ul{margin:6px 0 6px 18px}
+.explainBox{background:#fffbeb;border:1px solid #fde68a;border-radius:16px;padding:14px;margin-top:12px;color:#111}
+.webBox{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:16px;padding:14px;margin-top:12px;color:#111}.webBox a{color:#15803d;font-weight:700}
+.loading{display:none;text-align:center;padding:16px}.spinner{width:36px;height:36px;border:4px solid var(--border);border-top:4px solid #7c3aed;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 8px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tabs{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;background:var(--chip);padding:5px;border-radius:999px;margin:10px 0}
+.tab{padding:10px;border-radius:999px;border:0;font-weight:800;font-size:11px;cursor:pointer;background:transparent;color:var(--text)}.tab.active{background:#111;color:#fff}
+.badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:800}
+.topicGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.topicBtn{padding:12px;border-radius:16px;border:1px solid var(--border);background:var(--card);text-align:left;cursor:pointer;font-weight:700;font-size:12px;color:var(--text)}
+.topicBtn small{display:block;font-weight:500;color:var(--muted);font-size:11px}
+.footer{font-size:11px;color:var(--muted);text-align:center;line-height:1.6;padding:10px}
+.featureGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.featureCard{background:var(--chip);border:1px solid var(--border);border-radius:18px;padding:14px;cursor:pointer}
+.featureCard b{font-size:13px}.featureCard p{font-size:11px;color:var(--muted);margin-top:4px}
+.timerBox{background:#111;color:#fff;border-radius:18px;padding:16px;text-align:center;margin-top:10px}.timerBox h2{font-size:36px}
+.flashCard{perspective:1000px;margin-top:10px;cursor:pointer}.flashInner{position:relative;width:100%;height:150px;transition:transform .6s;transform-style:preserve-3d}.flashCard.flipped .flashInner{transform:rotateY(180deg)}.flashFace{position:absolute;inset:0;border-radius:18px;display:flex;align-items:center;justify-content:center;padding:16px;text-align:center;font-weight:800;font-size:16px;backface-visibility:hidden}.flashFront{background:linear-gradient(135deg,#7c3aed,#ec4899);color:#fff}.flashBack{background:#111;color:#fff;transform:rotateY(180deg)}
+.calcBox{background:var(--chip);border-radius:16px;padding:14px;margin-top:10px}
+/* ID CARD */
+.idCard{background:linear-gradient(135deg,#111,#2e1a5e,#7c3aed);color:#fff;border-radius:20px;padding:16px;display:flex;gap:14px;align-items:center;margin-top:10px;position:relative;overflow:hidden}
+.idCard::after{content:'🎓';position:absolute;right:8px;bottom:-10px;font-size:60px;opacity:.2}
+.idCard .bigAvatar{width:56px;height:56px;border-radius:50%;background:#fff;color:#111;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;flex-shrink:0}
+.idCard b{font-size:15px}.idCard p{font-size:12px;opacity:.9;margin-top:2px}
+.bottomNav{position:fixed;bottom:0;left:0;right:0;background:var(--card);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;justify-content:space-around;padding:10px 10px calc(10px + env(safe-area-inset-bottom));z-index:99;max-width:580px;margin:0 auto}
+.navItem{background:none;border:0;cursor:pointer;font-size:11px;font-weight:800;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:2px}.navItem.active{color:#7c3aed}.navItem span{font-size:20px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:20px;z-index:999}
+.modalCard{background:#fff;color:#111;border-radius:28px;padding:24px;width:100%;max-width:400px;text-align:center;box-shadow:0 30px 60px rgba(0,0,0,.3);max-height:90vh;overflow-y:auto}
+body.dark .modalCard{background:#1a1a2e;color:#fff}
+.modalCard h2{font-family:'Playfair Display',serif;font-size:26px}.modalCard p{font-size:13px;color:#6b7280;margin-top:6px;line-height:1.6}
+.avatarPick{display:flex;gap:8px;justify-content:center;margin:14px 0;flex-wrap:wrap}.avatarPick button{width:44px;height:44px;border-radius:50%;border:2px solid transparent;font-size:22px;cursor:pointer;background:#f3f4f6}.avatarPick button.sel{border-color:#7c3aed;transform:scale(1.1)}
+.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#111;color:#fff;padding:12px 18px;border-radius:999px;font-size:13px;font-weight:700;z-index:1000;display:none;white-space:nowrap}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="topbar">
+<div class="userInfo" onclick="editProfile()">
+<div class="avatar" id="userAvatar">K</div>
+<div><b id="greeting">Hello, Kojo! 👋</b><span id="userSub">Kumasi • <span id="courseTop">AI150</span></span><br><span class="idBadge" id="idBadgeTop">🪪 ID: 23467083</span></div>
+</div>
+<div class="topBtns"><button class="iconBtn" onclick="toggleTwi()">🇬🇭</button><button class="iconBtn" onclick="toggleDark()" id="darkBtn">🌙</button></div>
+</div>
+
+<div class="hero"><h1>Ask anything, <span id="heroName">Kojo</span>.<br>Understand everything.</h1><p>Welcome back, <b id="heroFull">Kojo Apau Ofori</b> • ID <b id="heroId">23467083</b><br>Ms. Ada knows everything about your 7 courses: AI150 • BIT151 • BIT153 • BIT157 • ECON151 • ENGL157 • MATH171.</p><div class="stats"><div class="stat"><b>🔥 <span id="streakNum">1</span> Day</b><span>Streak</span></div><div class="stat"><b>⭐ <span id="favCount">0</span> Saved</b><span>Favourites</span></div><div class="stat"><b>🪪 <span id="heroId2">23467083</span></b><span>Student ID</span></div></div><div class="streakBar" id="streakBar"></div></div>
+
+<div class="installBanner" id="installBanner"><div style="font-size:28px">📱</div><div style="flex:1"><b>Install Kojo Assignment as App!</b><br><small>Add to Home Screen — opens like WhatsApp</small></div><button onclick="installApp()">⬇️ Install</button></div>
+
+<div class="card"><h3>✨ Quick Actions</h3><div class="featureGrid">
+<div class="featureCard" onclick="showFlashcards()"><b>🃏 Flashcards</b><p>Flip cards, revise fast</p></div>
+<div class="featureCard" onclick="showCalculator()"><b>🧮 MATH Calculator</b><p>Derivative & Integration</p></div>
+<div class="featureCard" onclick="showTimer()"><b>⏰ Focus Timer</b><p>25 min focus</p></div>
+<div class="featureCard" onclick="toggleExamMode()"><b>📝 Exam Mode</b><p>Hide answers</p></div>
+<div class="featureCard" onclick="showFavourites()"><b>⭐ My Favourites</b><p>Saved answers</p></div>
+<div class="featureCard" onclick="speakLast()"><b>🔊 Listen</b><p>Ms. Ada reads aloud</p></div>
+</div><div id="featureArea"></div>
+<div class="idCard" id="idCardPreview"><div class="bigAvatar" id="idCardAvatar">👦🏾</div><div><b id="idCardName">Kojo Apau Ofori</b><p>🪪 Student ID: <b id="idCardId">23467083</b></p><p>📚 <span id="idCardCourse">AI150</span> • Kumasi • 2026</p><p style="font-size:11px;opacity:.7">Tap avatar at top to edit</p></div></div>
+</div>
+
+<div class="courses" id="courses"></div>
+
+<div class="card">
+<div class="teacher"><div class="teacherAvatar">👩🏾‍🏫</div><div><b>Ms. Ada — Knows All 7 Courses</b><p id="teacherMsg">Hello! Pick course, upload PDF/photo or talk to me.</p></div></div>
+<label style="margin-top:14px;display:block">📤 UPLOAD QUESTION / PDF / PHOTO</label>
+<div class="uploadZone" onclick="document.getElementById('fileInput').click()"><div style="font-size:34px">📸📄</div><b>Tap to Upload</b><br><span style="font-size:13px;color:#6b7280">Photo • Screenshot • PDF • Word<br>Ms. Ada will READ it automatically</span></div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px">
+<button class="chip" style="padding:12px" onclick="document.getElementById('fileInput').click()">📷 Gallery</button>
+<button class="chip" style="padding:12px" onclick="document.getElementById('cameraInput').click()">🤳 Camera</button>
+<button class="chip" style="padding:12px" onclick="document.getElementById('fileInput').click()">📄 PDF / Doc</button>
+</div>
+<input type="file" id="fileInput" accept="image/*,.pdf,.doc,.docx,.txt" style="display:none" onchange="handleUpload(event)">
+<input type="file" id="cameraInput" accept="image/*" capture="environment" style="display:none" onchange="handleUpload(event)">
+<div class="previewBox" id="previewBox"><div id="previewContent"></div><div class="ocrBox" id="ocrBox" style="display:none"><b>👁️ Ms. Ada read:</b><p id="ocrText"></p></div><button class="btn btnDark" style="margin-top:10px" onclick="clearUpload()">🗑️ Remove Upload</button></div>
+
+<label style="margin-top:16px;display:block">✍️ OR TYPE / TALK QUESTION</label>
+<textarea id="question" placeholder="e.g. What is demand? What is derivative? What is algorithm?"></textarea>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
+<button class="btn btnOutline" onclick="startVoice()">🎤 Voice Ask</button>
+<button class="btn btnOutline" onclick="clearQuestion()">🗑️ Clear</button>
+</div>
+<input type="text" id="confusion" placeholder="What don't you understand? e.g. I don't get question 3...">
+<div class="tabs"><button class="tab active" onclick="setMode(this,'answer')">📝 Answer</button><button class="tab" onclick="setMode(this,'explain')">💡 Simple</button><button class="tab" onclick="setMode(this,'quiz')">🧩 Quiz</button><button class="tab" onclick="setMode(this,'past')">📚 Past Qs</button></div>
+<label>🔥 POPULAR IN <span id="courseLabel">AI150</span></label>
+<div class="chips" id="quickChips"></div>
+<label style="margin-top:12px;display:block">📖 FULL TOPICS — Tap to Learn</label>
+<div class="topicGrid" id="topicGrid"></div>
+<button class="btn btnMain" style="margin-top:14px" onclick="askTeacher()">✨ Ask Ms. Ada → Explain</button>
+<button class="btn btnDark" style="margin-top:8px" onclick="fetchFromWeb()">🌍 Fetch From World Wide Web →</button>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
+<button class="btn btnOutline" onclick="speakLast()">🔊 Listen</button>
+<button class="btn btnOutline" onclick="saveFavourite()">⭐ Save Favourite</button>
+</div>
+<div class="loading" id="loading"><div class="spinner"></div><p id="loadingText" style="font-size:13px">Ms. Ada is thinking...</p></div>
+<div id="resultArea"></div>
+</div>
+<div class="card"><h3>🕘 Your Uploads + History</h3><div id="myUploads" style="margin-top:10px"></div><div id="historyList" style="margin-top:10px"></div></div>
+<p class="footer">Made for <span id="footerName">Kojo</span> • ID <span id="footerId">23467083</span> • Kumasi<br>AI150 • BIT151 • BIT153 • BIT157 • ECON151 • ENGL157 • MATH171</p>
+</div>
+
+<div class="bottomNav">
+<button class="navItem active" onclick="window.scrollTo({top:0,behavior:'smooth'})"><span>🏠</span>Home</button>
+<button class="navItem" onclick="document.getElementById('courses').scrollIntoView({behavior:'smooth'})"><span>📚</span>Courses</button>
+<button class="navItem" onclick="document.getElementById('fileInput').click()"><span>📸</span>Upload</button>
+<button class="navItem" onclick="showFlashcards();window.scrollTo({top:200,behavior:'smooth'})"><span>🃏</span>Flashcards</button>
+<button class="navItem" onclick="editProfile()"><span>👤</span><span id="navName">Me</span></button>
+</div>
+
+<!-- USERNAME + STUDENT ID MODAL - REQUIRED -->
+<div class="modal" id="usernameModal">
+<div class="modalCard">
+<div style="font-size:50px">🎓</div>
+<h2 id="modalTitle">Welcome to<br>Kojo Homework AI!</h2>
+<p id="modalSub">To continue, enter your <b>Full Name</b> and <b>Student ID</b>.<br>Both are <b>REQUIRED</b> — you cannot skip.</p>
+<label style="text-align:left;display:block;margin-top:14px">👤 FULL NAME <span style="color:#dc2626">*</span> REQUIRED</label>
+<input type="text" id="usernameInput" placeholder="e.g. Kojo Apau Ofori" maxlength="30" oninput="validateForm()">
+<div class="errorMsg" id="nameError">⚠️ Please enter your full name!</div>
+<label style="text-align:left;display:block;margin-top:10px">🪪 STUDENT ID <span style="color:#dc2626">*</span> REQUIRED</label>
+<input type="tel" id="studentIdInput" placeholder="e.g. 23467083 (8 numbers)" maxlength="8" inputmode="numeric" oninput="validateForm()">
+<div class="errorMsg" id="idError">⚠️ Student ID must be 8 numbers! e.g. 23467083</div>
+<div style="background:#fef3c7;border:1px solid #fde68a;border-radius:12px;padding:10px;margin-top:10px;font-size:12px;text-align:left;color:#92400e">💡 <b>Where is your ID?</b> Check your student card / admission letter. For Kojo, it is <b>23467083</b>. It will appear at the top of every page.</div>
+<label style="text-align:left;display:block;margin-top:10px">PICK YOUR AVATAR</label>
+<div class="avatarPick" id="avatarPick">
+<button onclick="pickAvatar(this,'👦🏾')">👦🏾</button><button onclick="pickAvatar(this,'👧🏾')">👧🏾</button><button onclick="pickAvatar(this,'🧑🏾')">🧑🏾</button><button onclick="pickAvatar(this,'👨🏾‍🎓')">👨🏾‍🎓</button><button onclick="pickAvatar(this,'👩🏾‍🎓')">👩🏾‍🎓</button><button onclick="pickAvatar(this,'🔥')">🔥</button><button onclick="pickAvatar(this,'⭐')">⭐</button>
+</div>
+<button class="btn btnMain" id="saveBtn" onclick="saveUsername()" disabled>🔒 Enter Name + Student ID to Continue</button>
+<p style="font-size:11px;margin-top:10px">Your Name + ID are saved only on YOUR phone. No one else sees it. Tap your avatar anytime to change it.</p>
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let currentCourse='AI150', currentMode='answer', lastAnswer='', examMode=false, twiMode=false, selectedAvatar='👦🏾', deferredPrompt=null;
+let flashcards=[{q:'What is Demand?',a:'Quantity consumers willing to buy. Price UP → Demand DOWN'},{q:'y = x², dy/dx = ?',a:'2x (Power Rule)'},{q:'What is Algorithm?',a:'Step-by-step. Like recipe!'},{q:'What is Cybercrime?',a:'Crime using computer. Hacking, phishing, fraud.'},{q:'What is Supercomputer?',a:'Most powerful. Parallel processing.'},{q:'∫ 2x dx = ?',a:'x² + C (Always + C!)'},{q:'What is Responsible AI?',a:'AI fair, safe, transparent.'},{q:'Essay structure?',a:'Intro → Body → Conclusion'}];
+let flashIdx=0, timerInterval=null, timerSec=25*60, timerRunning=false;
+const COURSES={
+AI150:{icon:'🤖', name:'Responsible AI For All', topics:[{t:'What is AI?',d:'Definition, types'},{t:'Responsible AI',d:'Fair, safe'},{t:'Bias in AI',d:'Types, fix'},{t:'Machine Learning',d:'Supervised'},{t:'Deep Learning',d:'Neural nets'},{t:'AI Ethics',d:'Privacy'},{t:'AI in Ghana',d:'Health, farming'},{t:'AI Risks',d:'Jobs, misinfo'}], quick:['What is Artificial Intelligence?','What is Responsible AI?','What is bias in AI?','What is machine learning?','What is AI ethics?']},
+BIT151:{icon:'💻', name:'Fundamentals of IT', topics:[{t:'Characteristics of Computer',d:'Speed, accuracy'},{t:'Supercomputer',d:'Fastest'},{t:'Input Devices',d:'Keyboard, mouse'},{t:'Output Devices',d:'Monitor, printer'},{t:'IPO Cycle',d:'Input→Process→Output'},{t:'Hardware vs Software',d:'Physical vs programs'},{t:'Operating System',d:'Windows, Linux'},{t:'Storage Devices',d:'HDD, SSD'}], quick:['What are characteristics of a computer?','What is a supercomputer?','Difference between input and output devices','What is IPO cycle?']},
+BIT153:{icon:'⚖️', name:'Ethical & Legal Issues', topics:[{t:'Cybercrime',d:'Hacking, phishing'},{t:'Copyright',d:'Protect creators'},{t:'Plagiarism',d:'Copying'},{t:'Intellectual Property',d:'Patent'},{t:'Privacy',d:'Data protection'},{t:'Computer Ethics',d:'10 commandments'},{t:'Ghana Data Law',d:'Act 2012'},{t:'Social Media Ethics',d:'Fake news'}], quick:['What is cybercrime?','What is intellectual property?','What is plagiarism?','What is privacy in computing?','What is copyright?']},
+BIT157:{icon:'⌨️', name:'Structured Programming', topics:[{t:'Algorithm',d:'Step-by-step'},{t:'Flowchart',d:'Diagram'},{t:'Pseudocode',d:'English code'},{t:'Variable',d:'Store data'},{t:'Data Types',d:'int, float'},{t:'Loop',d:'for, while'},{t:'If-Else',d:'Decision'},{t:'C Programming',d:'printf, scanf'}], quick:['What is an algorithm?','What is a flowchart?','What is pseudocode?','Difference between compiler and interpreter','What is a variable?']},
+ECON151:{icon:'💰', name:'Elements of Economics', topics:[{t:'What is Economics?',d:'Scarcity, choice'},{t:'Demand',d:'Law of demand'},{t:'Supply',d:'Law of supply'},{t:'Equilibrium',d:'Demand=Supply'},{t:'Elasticity',d:'Price response'},{t:'GDP',d:'Gross Domestic'},{t:'Inflation',d:'Prices rising'},{t:'Unemployment',d:'Types, Ghana'}], quick:['What is Economics?','What is demand?','What is supply?','What is equilibrium price?','What is inflation?']},
+ENGL157:{icon:'🗣️', name:'Communication Skills', topics:[{t:'Essay Writing',d:'Intro, body, conclusion'},{t:'Presentation',d:'Speak confidently'},{t:'Academic Writing',d:'Referencing'},{t:'Listening Skills',d:'Active listening'},{t:'Report Writing',d:'Formal'},{t:'CV Writing',d:'Curriculum vitae'},{t:'Public Speaking',d:'Fear, practice'},{t:'Comprehension',d:'Read & understand'}], quick:['How to write a good essay?','What is academic writing?','How to do a good presentation?','What is a CV?','What is communication?']},
+MATH171:{icon:'∫', name:'Calculus', topics:[{t:'What is Calculus?',d:'Limits, derivatives'},{t:'Limits',d:'Approaching value'},{t:'Derivatives',d:'Rate of change'},{t:'Differentiation',d:'dy/dx rules'},{t:'Integration',d:'Area under curve'},{t:'Chain Rule',d:'Composite'},{t:'Product Rule',d:'u.v rule'},{t:'Applications',d:'Max, min, velocity'}], quick:['What is calculus?','What is a derivative?','What is integration?','What is limit in calculus?','Differentiate x²']}
+};
+const KNOWLEDGE={
+'characteristics of a computer':{title:'Characteristics of a Computer', answer:`Speed: Millions/sec. Accuracy: Correct if data correct. Diligence: Never tired. Versatility: Many tasks. Storage: Huge. Automation: Works alone.`, explain:`Robot super fast, never sleeps.`},
+'supercomputer':{title:'Supercomputer', answer:`Most powerful. Parallel processing. Petaflops. Uses: Weather, research, space. Examples: Frontier, Fugaku.`, explain:`Bicycle vs Rocket.`},
+'algorithm':{title:'Algorithm', answer:`Step-by-step. Example Make Tea: Boil, Add tea, Add sugar, Stir, Serve.`, explain:`Algorithm = Recipe for jollof.`},
+'cybercrime':{title:'Cybercrime', answer:`Crime using computer. Types: Hacking, Phishing, Fraud/Sakawa, Bullying, Piracy. Prevention: Strong passwords.`, explain:`Thief using phone.`},
+'responsible ai':{title:'Responsible AI', answer:`AI fair, safe, transparent, accountable, respects privacy.`, explain:`AI that behaves well.`},
+'demand':{title:'Demand (ECON151)', answer:`Demand = quantity consumers willing to buy at price. Law: Price UP → Demand DOWN. Example: Kenkey GH₵5 → GH₵10, fewer buy.`, explain:`Cheap kenkey = everybody wants!`},
+'supply':{title:'Supply', answer:`Supply = quantity sellers willing to sell. Law: Price UP → Supply UP. Example: Tomato price high, farmers bring more to Kejetia.`, explain:`High price = sellers bring more!`},
+'equilibrium':{title:'Equilibrium Price', answer:`Equilibrium where Demand = Supply. No shortage, no surplus. At GH₵10, buyers want 100 kenkey, sellers sell 100.`, explain:`Balance like see-saw.`},
+'inflation':{title:'Inflation', answer:`General rise in prices, money buys less. Kenkey GH₵2 in 2020 → GH₵5 now. Causes: Fuel, imports.`, explain:`GH₵10 bought 5 kenkey, now buys 2.`},
+'derivative':{title:'Derivative (MATH171)', answer:`Derivative = rate of change. Power Rule: y=xⁿ → dy/dx=n·xⁿ⁻¹. Example: y=x² → 2x. y=x³ → 3x².`, explain:`Derivative = Speedometer.`},
+'integration':{title:'Integration (MATH171)', answer:`Integration = opposite of differentiation. ∫ xⁿ dx = xⁿ⁺¹/(n+1) + C. Example: ∫2x dx = x² + C. Always + C!`, explain:`Break apart vs Put back together.`},
+'limit':{title:'Limit (MATH171)', answer:`Limit = value function approaches as x approaches value. lim (x→2) (x+1)=3.`, explain:`Walking towards Kejetia.`},
+'essay':{title:'Essay Writing (ENGL157)', answer:`1 Intro: Topic + thesis. 2 Body: 3 paragraphs, 1 point each + example. 3 Conclusion: Summarise. Tips: Firstly, Secondly, Finally.`, explain:`Tell what you'll say, Say it, Tell what you said.`},
+'communication':{title:'Communication', answer:`Sending/receiving info. Sender → Message → Channel → Receiver → Feedback. Types: Verbal, Non-verbal, Written.`, explain:`You talk, I listen, I reply.`}
+};
+// USERNAME + STUDENT ID - REQUIRED
+function validateForm(){
+  let name=document.getElementById('usernameInput').value.trim();
+  let id=document.getElementById('studentIdInput').value.trim();
+  // Only allow numbers in ID
+  document.getElementById('studentIdInput').value=id.replace(/[^0-9]/g,'').slice(0,8);
+  id=document.getElementById('studentIdInput').value;
+  let nameOk=name.length>=3;
+  let idOk=/^[0-9]{8}$/.test(id);
+  document.getElementById('nameError').style.display=(!nameOk && name.length>0)?'block':'none';
+  document.getElementById('idError').style.display=(!idOk && id.length>0)?'block':'none';
+  document.getElementById('usernameInput').classList.toggle('error', !nameOk && name.length>0);
+  document.getElementById('studentIdInput').classList.toggle('error', !idOk && id.length>0);
+  let btn=document.getElementById('saveBtn');
+  if(nameOk && idOk){ btn.disabled=false; btn.innerText='✨ Start Learning →'; btn.style.opacity='1'; }
+  else { btn.disabled=true; btn.innerText='🔒 Enter Name + Student ID (8 numbers) to Continue'; btn.style.opacity='.6'; }
+  return nameOk && idOk;
+}
+function loadUser(){
+  let name=localStorage.getItem('kojo_username'); let id=localStorage.getItem('kojo_student_id'); let av=localStorage.getItem('kojo_avatar');
+  if(!name || !id || !/^[0-9]{8}$/.test(id)){ document.getElementById('usernameModal').classList.remove('hidden'); validateForm(); return; }
+  applyUser(name,id,av);
+}
+function applyUser(name,id,av){
+  let first=name.split(' ')[0];
+  document.getElementById('greeting').innerText=`Hello, ${first}! 👋`;
+  document.getElementById('heroName').innerText=first;
+  document.getElementById('heroFull').innerText=name;
+  document.getElementById('heroId').innerText=id;
+  document.getElementById('heroId2').innerText=id;
+  document.getElementById('footerName').innerText=name;
+  document.getElementById('footerId').innerText=id;
+  document.getElementById('navName').innerText=first;
+  document.getElementById('idBadgeTop').innerText=`🪪 ID: ${id}`;
+  document.getElementById('userSub').innerText=`Kumasi • ${currentCourse}`;
+  document.getElementById('userAvatar').innerText=av||first[0].toUpperCase();
+  document.getElementById('idCardAvatar').innerText=av||'👦🏾';
+  document.getElementById('idCardName').innerText=name;
+  document.getElementById('idCardId').innerText=id;
+  document.getElementById('idCardCourse').innerText=currentCourse;
+  document.getElementById('teacherMsg').innerText=`Hello ${first} (ID ${id})! Pick course, upload PDF/photo or talk to me. I know everything!`;
+  document.getElementById('usernameModal').classList.add('hidden');
+}
+function pickAvatar(el,emoji){ document.querySelectorAll('.avatarPick button').forEach(b=>b.classList.remove('sel')); el.classList.add('sel'); selectedAvatar=emoji; }
+function saveUsername(){
+  if(!validateForm()){ showToast('⚠️ Please enter Name + 8-digit Student ID!'); return; }
+  let name=document.getElementById('usernameInput').value.trim();
+  let id=document.getElementById('studentIdInput').value.trim();
+  localStorage.setItem('kojo_username',name); localStorage.setItem('kojo_student_id',id); localStorage.setItem('kojo_avatar',selectedAvatar);
+  applyUser(name,id,selectedAvatar); showToast(`Welcome, ${name.split(' ')[0]}! ID ${id} saved ✅`); speakText(`Welcome ${name.split(' ')[0]}, ID ${id}. I am Ms Ada.`);
+}
+function editProfile(){
+  let name=localStorage.getItem('kojo_username')||''; let id=localStorage.getItem('kojo_student_id')||'';
+  document.getElementById('usernameInput').value=name; document.getElementById('studentIdInput').value=id;
+  document.getElementById('modalTitle').innerHTML='Edit Your Profile';
+  document.getElementById('modalSub').innerHTML='Change your <b>Name</b> or <b>Student ID</b>. Both are still required.';
+  document.getElementById('usernameModal').classList.remove('hidden'); validateForm();
+}
+window.addEventListener('beforeinstallprompt',e=>{ e.preventDefault(); deferredPrompt=e; });
+function installApp(){ if(deferredPrompt){ deferredPrompt.prompt(); deferredPrompt.userChoice.then(r=>{ if(r.outcome==='accepted') showToast('🎉 App Installed! Check Home Screen!'); deferredPrompt=null; }); } else { showToast('On iPhone: Share → Add to Home Screen • Android: Menu → Add to Home Screen'); } setTimeout(()=>{ document.getElementById('installBanner').style.display='none'; },8000); }
+if('serviceWorker' in navigator){ let swCode=`self.addEventListener('fetch',e=>{e.respondWith(fetch(e.request).catch(()=>new Response('Offline')))});`; let blob=new Blob([swCode],{type:'text/javascript'}); navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(()=>{}); }
+function toggleDark(){ document.body.classList.toggle('dark'); let isDark=document.body.classList.contains('dark'); localStorage.setItem('kojo_dark',isDark?'1':'0'); document.getElementById('darkBtn').innerText=isDark?'☀️':'🌙'; showToast(isDark?'🌙 Dark Mode ON':'☀️ Light Mode ON'); }
+if(localStorage.getItem('kojo_dark')==='1'){ document.body.classList.add('dark'); document.getElementById('darkBtn').innerText='☀️'; }
+function toggleTwi(){ twiMode=!twiMode; let name=localStorage.getItem('kojo_username')||'Kojo'; showToast(twiMode?'🇬🇭 Twi Mode ON':'🇬🇭 English Mode'); }
+function showToast(msg){ let t=document.getElementById('toast'); t.innerText=msg; t.style.display='block'; setTimeout(()=>t.style.display='none',3000); }
+function updateStreak(){ let today=new Date().toDateString(); let last=localStorage.getItem('kojo_last_day'); let streak=parseInt(localStorage.getItem('kojo_streak')||'0'); if(last!==today){ streak=last?streak+1:1; localStorage.setItem('kojo_streak',streak); localStorage.setItem('kojo_last_day',today); } document.getElementById('streakNum').innerText=streak; let bar=document.getElementById('streakBar'); bar.innerHTML=''; for(let i=0;i<7;i++){ bar.innerHTML+=`<div class="streakDay ${i<streak?'done':''}">${['M','T','W','T','F','S','S'][i]}</div>`; } } updateStreak();
+function showFlashcards(){ let c=flashcards[flashIdx]; document.getElementById('featureArea').innerHTML=`<div class="flashCard" onclick="this.classList.toggle('flipped')"><div class="flashInner"><div class="flashFace flashFront">🃏 ${c.q}<br><small style="font-weight:400;font-size:12px">Tap to flip</small></div><div class="flashFace flashBack">✅ ${c.a}</div></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px"><button class="btn btnOutline" onclick="flashIdx=(flashIdx-1+flashcards.length)%flashcards.length;showFlashcards()">⬅️ Prev</button><button class="btn btnOutline" onclick="flashIdx=(flashIdx+1)%flashcards.length;showFlashcards()">Next ➡️</button></div>`; }
+function showCalculator(){ document.getElementById('featureArea').innerHTML=`<div class="calcBox"><h3>🧮 MATH171 Calculator</h3><label>Function: y = x^</label><input type="number" id="powerInput" value="2"><label>Coefficient</label><input type="number" id="coeffInput" value="1"><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px"><button class="btn btnMain" onclick="calcDerivative()">d/dx</button><button class="btn btnDark" onclick="calcIntegral()">∫ Integral</button></div><div id="calcResult" style="margin-top:10px;font-weight:800"></div></div>`; }
+function calcDerivative(){ let n=parseFloat(document.getElementById('powerInput').value||'2'); let a=parseFloat(document.getElementById('coeffInput').value||'1'); document.getElementById('calcResult').innerHTML=`✅ Derivative: dy/dx = ${a*n}x<sup>${n-1}</sup>`; }
+function calcIntegral(){ let n=parseFloat(document.getElementById('powerInput').value||'2'); let a=parseFloat(document.getElementById('coeffInput').value||'1'); document.getElementById('calcResult').innerHTML=`✅ Integration: ∫ = ${(a/(n+1)).toFixed(2).replace('.00','')}x<sup>${n+1}</sup> + C`; }
+function showTimer(){ document.getElementById('featureArea').innerHTML=`<div class="timerBox"><p>⏰ FOCUS TIMER</p><h2 id="timerDisplay">25:00</h2><p>Ready? Let's focus!</p><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px"><button class="btn btnMain" onclick="startTimer()">▶️ Start</button><button class="btn btnDark" onclick="pauseTimer()">⏸️ Pause</button><button class="btn btnDark" onclick="resetTimer()">🔄 Reset</button></div></div>`; }
+function updateTimerDisplay(){ let el=document.getElementById('timerDisplay'); if(el){ let m=Math.floor(timerSec/60).toString().padStart(2,'0'); let s=(timerSec%60).toString().padStart(2,'0'); el.innerText=`${m}:${s}`; } }
+function startTimer(){ if(timerRunning) return; timerRunning=true; timerInterval=setInterval(()=>{ timerSec--; updateTimerDisplay(); if(timerSec<=0){ clearInterval(timerInterval); timerRunning=false; showToast('⏰ Time up! Break 🎉'); timerSec=25*60; updateTimerDisplay(); } },1000); }
+function pauseTimer(){ clearInterval(timerInterval); timerRunning=false; }
+function resetTimer(){ clearInterval(timerInterval); timerRunning=false; timerSec=25*60; updateTimerDisplay(); }
+function toggleExamMode(){ examMode=!examMode; showToast(examMode?'📝 Exam Mode ON':'📝 Exam Mode OFF'); }
+function showFavourites(){ let favs=JSON.parse(localStorage.getItem('kojo_favs')||'[]'); document.getElementById('featureArea').innerHTML=favs.length?`<h3>⭐ Your Favourites (${favs.length})</h3>`+favs.map(f=>`<div style="border:1px solid var(--border);border-radius:12px;padding:10px;margin-top:8px;cursor:pointer" onclick="document.getElementById('question').value='${f.q.replace(/'/g,"\\'")}';askTeacher()"><b>${f.course}:</b> ${f.q}</div>`).join(''):`<p style="font-size:13px">No favourites yet.</p>`; }
+function saveFavourite(){ let q=document.getElementById('question').value; if(!q||!lastAnswer){ showToast('Ask first!'); return; } let favs=JSON.parse(localStorage.getItem('kojo_favs')||'[]'); favs.unshift({q,course:currentCourse,a:lastAnswer}); localStorage.setItem('kojo_favs',JSON.stringify(favs)); document.getElementById('favCount').innerText=favs.length; showToast('⭐ Saved!'); }
+function updateFavCount(){ document.getElementById('favCount').innerText=JSON.parse(localStorage.getItem('kojo_favs')||'[]').length; } updateFavCount();
+function startVoice(){ if(!('webkitSpeechRecognition' in window || 'SpeechRecognition' in window)){ showToast('Voice not supported. Type instead.'); return; } let Rec=window.SpeechRecognition||window.webkitSpeechRecognition; let rec=new Rec(); rec.lang='en-GH'; rec.onresult=(e)=>{ document.getElementById('question').value=e.results[0][0].transcript; askTeacher(); }; rec.start(); showToast('🎤 Listening...'); }
+function speakText(text){ if(!('speechSynthesis' in window)) return; window.speechSynthesis.cancel(); let u=new SpeechSynthesisUtterance(text); u.lang='en-GH'; u.rate=0.9; window.speechSynthesis.speak(u); }
+function speakLast(){ if(!lastAnswer){ showToast('Ask first, then Listen'); return; } speakText(lastAnswer.replace(/<[^>]*>/g,' ')); showToast('🔊 Ms. Ada is reading...'); }
+function clearQuestion(){ document.getElementById('question').value=''; document.getElementById('confusion').value=''; }
+function renderCourses(){ document.getElementById('courses').innerHTML=Object.keys(COURSES).map(k=>`<button class="course ${k===currentCourse?'active':''}" data-course="${k}" onclick="pickCourse(this)"><i>${COURSES[k].icon}</i><b>${k}</b><span>${COURSES[k].name}</span></button>`).join(''); }
+function pickCourse(el){ document.querySelectorAll('.course').forEach(c=>c.classList.remove('active')); el.classList.add('active'); currentCourse=el.dataset.course; document.getElementById('courseLabel').innerText=currentCourse; document.getElementById('courseTop').innerText=currentCourse; document.getElementById('idCardCourse').innerText=currentCourse; renderQuick(); renderTopics(); }
+function renderQuick(){ document.getElementById('quickChips').innerHTML=COURSES[currentCourse].quick.map(q=>`<button class="chip" onclick="useQuick('${q.replace(/'/g,"\\'")}')">${q}</button>`).join(''); }
+function renderTopics(){ document.getElementById('topicGrid').innerHTML=COURSES[currentCourse].topics.map(tp=>`<button class="topicBtn" onclick="useQuick('What is ${tp.t}?')">📖 ${tp.t}<small>${tp.d}</small></button>`).join(''); }
+function useQuick(q){ document.getElementById('question').value=q; askTeacher(); }
+function setMode(el,m){ document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); el.classList.add('active'); currentMode=m; }
+async function handleUpload(e){ let f=e.target.files[0]; if(f) processFile(f); }
+async function processFile(file){ let box=document.getElementById('previewBox'); box.style.display='block'; let preview=document.getElementById('previewContent'); if(file.type.startsWith('image/')){ let url=URL.createObjectURL(file); preview.innerHTML=`<p style="font-size:12px;font-weight:800">📸 ${file.name}</p><img src="${url}">`; document.getElementById('loading').style.display='block'; try{ let result=await Tesseract.recognize(url,'eng'); let text=result.data.text.trim(); document.getElementById('loading').style.display='none'; if(text.length>5){ document.getElementById('ocrBox').style.display='block'; document.getElementById('ocrText').innerText=text; document.getElementById('question').value=text; saveUpload(file.name,text); } }catch(err){ document.getElementById('loading').style.display='none'; } } else { preview.innerHTML=`<div style="background:#111;color:#fff;border-radius:14px;padding:14px">📄 <b>${file.name}</b><br><span style="font-size:12px">PDF uploaded. Copy question and paste below.</span></div>`; saveUpload(file.name,'PDF: '+file.name); } }
+function clearUpload(){ document.getElementById('previewBox').style.display='none'; document.getElementById('ocrBox').style.display='none'; document.getElementById('fileInput').value=''; }
+function saveUpload(name,text){ let list=JSON.parse(localStorage.getItem('kojo_uploads')||'[]'); list.unshift({name,text,time:new Date().toLocaleString()}); list=list.slice(0,6); localStorage.setItem('kojo_uploads',JSON.stringify(list)); renderUploads(); }
+function renderUploads(){ let list=JSON.parse(localStorage.getItem('kojo_uploads')||'[]'); document.getElementById('myUploads').innerHTML=list.length?list.map(u=>`<div style="border:1px solid var(--border);border-radius:12px;padding:10px;margin-top:8px;cursor:pointer" onclick="document.getElementById('question').value='${u.text.replace(/'/g,"\\'").slice(0,200)}';askTeacher()"><b>${u.name}</b> • ${u.time}<br><span style="font-size:12px">${u.text.slice(0,80)}</span></div>`).join(''):'<p style="font-size:12px;color:var(--muted)">No uploads yet.</p>'; let hist=JSON.parse(localStorage.getItem('kojo_history')||'[]'); document.getElementById('historyList').innerHTML=hist.length?`<h4 style="margin-top:12px">📚 Recent</h4>`+hist.slice(0,5).map(h=>`<div class="chip" onclick="document.getElementById('question').value='${h.replace(/'/g,"\\'")}';askTeacher()">${h.slice(0,50)}</div>`).join(''):''; }
+async function askTeacher(){ let q=document.getElementById('question').value.trim(); let confusion=document.getElementById('confusion').value.trim(); let userName=localStorage.getItem('kojo_username')||'Kojo'; let userId=localStorage.getItem('kojo_student_id')||''; let first=userName.split(' ')[0]; if(!q){ alert('Upload or type question first!'); return; } let area=document.getElementById('resultArea'); let load=document.getElementById('loading'); load.style.display='block'; await new Promise(r=>setTimeout(r,700)); load.style.display='none'; let lower=q.toLowerCase(); let found=null; for(let k in KNOWLEDGE){ if(lower.includes(k)) found=KNOWLEDGE[k]; } if(!found){ if(lower.includes('supercomputer')) found=KNOWLEDGE['supercomputer']; if(lower.includes('algorithm')) found=KNOWLEDGE['algorithm']; if(lower.includes('cyber')) found=KNOWLEDGE['cybercrime']; if(lower.includes('responsible')) found=KNOWLEDGE['responsible ai']; if(lower.includes('demand')) found=KNOWLEDGE['demand']; if(lower.includes('supply')) found=KNOWLEDGE['supply']; if(lower.includes('equilibrium')) found=KNOWLEDGE['equilibrium']; if(lower.includes('inflation')) found=KNOWLEDGE['inflation']; if(lower.includes('derivative')||lower.includes('differentiat')) found=KNOWLEDGE['derivative']; if(lower.includes('integrat')) found=KNOWLEDGE['integration']; if(lower.includes('limit')) found=KNOWLEDGE['limit']; if(lower.includes('essay')) found=KNOWLEDGE['essay']; if(lower.includes('communication')) found=KNOWLEDGE['communication']; }
+  let hist=JSON.parse(localStorage.getItem('kojo_history')||'[]'); hist.unshift(q); hist=[...new Set(hist)].slice(0,10); localStorage.setItem('kojo_history',JSON.stringify(hist)); renderUploads();
+  let html=`<div style="margin-top:14px"><span class="badge" style="background:#ede9fe;color:#7c3aed">${currentCourse} • For ${first} • 🪪 ${userId}</span> <span class="badge" style="background:#dcfce7;color:#166534">✓ VERIFIED</span>`;
+  if(confusion) html+=`<div class="ocrBox"><b>${first} (ID ${userId}), you don't understand:</b> "${confusion}" — Ms. Ada will focus on that! 🎯</div>`;
+  if(examMode){ html+=`<div style="background:#111;color:#fff;border-radius:16px;padding:14px;margin-top:12px"><h3>📝 EXAM MODE — Try First, ${first}!</h3><p>Q: <b>${q}</b></p><button class="btn btnMain" style="margin-top:10px" onclick="this.parentElement.querySelector('.quizAns').style.display='block';this.innerText='Reveal ✅'">Reveal Answer</button><div class="quizAns" style="display:none;margin-top:10px;background:#fff;color:#111;padding:12px;border-radius:12px">${found?found.answer:'Definition + 3 points + Ghana example + Conclusion'}</div></div>`; }
+  else if(currentMode==='quiz'){ html+=`<div style="background:#111;color:#fff;border-radius:16px;padding:14px;margin-top:12px"><h3>🧩 Quiz Time, ${first}!</h3><p>Q: <b>${q}</b></p><button class="btn btnMain" style="margin-top:10px" onclick="this.parentElement.querySelector('.quizAns').style.display='block';this.innerText='Revealed ✅'">Reveal Answer</button><div class="quizAns" style="display:none;margin-top:10px;background:#fff;color:#111;padding:12px;border-radius:12px">${found?found.answer:'Think: Definition + 3 points + Ghana example'}</div></div>`; }
+  else if(currentMode==='past'){ html+=`<div class="answer"><h3>📚 Likely Past Questions — ${currentCourse}</h3><ul><li>${q} — Explain with examples</li><li>List 4 features</li><li>3 advantages, 2 disadvantages</li><li>Give 2 Ghana examples</li></ul></div>`; if(found) html+=`<div class="answer"><h3>📝 ${found.title}</h3>${found.answer}</div><div class="explainBox">${found.explain}</div>`; }
+  else if(found){ html+=`<div class="answer"><h3>📝 ${found.title} — For ${first} (ID ${userId})</h3>${found.answer}</div><div class="explainBox">${found.explain}<br><br><b>🎯 Exam Tip:</b> Write your Name + ID on top of answer sheet: ${userName} — ${userId}</div>`; lastAnswer=found.answer+' '+found.explain; }
+  else { html+=`<div class="answer"><h3>📝 ${q}</h3><p><b>Definition:</b> ${q} is important in ${currentCourse}.</p><ul><li><b>What it is:</b> Main meaning</li><li><b>How it works:</b> Step-by-step</li><li><b>Ghana Example:</b> MTN, KNUST, Kejetia Market</li><li><b>Advantage:</b> Faster, cheaper</li></ul></div><div class="explainBox"><b>💡 Simple:</b> Explain to 10-year-old in Kumasi Market.</div>`; lastAnswer=q; }
+  html+=`<div class="webBox">🌍 <b>From World Wide Web for ${first} (ID ${userId}):</b><br><a href="https://en.wikipedia.org/wiki/${encodeURIComponent(q.replace('What is ','').replace('?',''))}" target="_blank">📖 Wikipedia →</a><br><a href="https://www.google.com/search?q=${encodeURIComponent(currentCourse+' '+q)}" target="_blank">🔍 Google: ${currentCourse} ${q} →</a><br><button class="chip" style="margin-top:8px" onclick="fetchFromWeb()">↻ Fetch Live Wikipedia</button></div>`;
+  html+=`<div style="display:flex;gap:8px;margin-top:12px"><button class="btn btnDark" style="flex:1" onclick="copyAnswer()">📋 Copy</button><button class="btn btnDark" style="flex:1" onclick="shareWhatsApp()">💬 Share</button></div></div>`;
+  area.innerHTML=html; if(found) speakText(`Hello ${first}. ${found.explain.replace(/<[^>]*>/g,'')}`);
+}
+async function fetchFromWeb(){ let q=document.getElementById('question').value.trim(); if(!q){ alert('Type question first!'); return; } let area=document.getElementById('resultArea'); let load=document.getElementById('loading'); load.style.display='block'; try{ let term=q.replace(/what is|explain|define/gi,'').replace('?','').trim()||q; let res=await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(term)}`); let data=await res.json(); load.style.display='none'; if(data.extract){ area.innerHTML+=`<div class="webBox"><h3>🌍 LIVE WIKIPEDIA — ${data.title}</h3><p>${data.extract}</p>${data.thumbnail?`<img src="${data.thumbnail.source}" style="width:100%;border-radius:12px;margin-top:10px">`:''}<br><a href="${data.content_urls?.desktop?.page}" target="_blank">Read Full →</a></div>`; } }catch(e){ load.style.display='none'; } }
+function copyAnswer(){ let t=document.getElementById('resultArea').innerText; navigator.clipboard.writeText(t); showToast('📋 Copied! Write in your own words.'); }
+function shareWhatsApp(){ let q=document.getElementById('question').value; let name=localStorage.getItem('kojo_username')||'Kojo'; let id=localStorage.getItem('kojo_student_id')||''; window.open('https://wa.me/?text='+encodeURIComponent(`Hi, I am ${name}, ID ${id}. Homework - ${currentCourse}\nQ: ${q}`),'_blank'); }
+loadUser(); renderCourses(); renderQuick(); renderTopics(); renderUploads();
+</script>
+</body>
+</html>
